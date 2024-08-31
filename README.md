@@ -24,4 +24,6 @@ interpretacion:
 ### Resultado Real
 - El botón "Login with Microsoft" estaba presente en la pantalla.
 - Al hacer clic en el botón, la consola mostró el mensaje: "Login with Microsoft presionado" y "El botón de login fue presionado correctamente".
-- La prueba fue exitosa.
+- La prueba fue exitosa n1 .
+- Se presento una falla en el test: La prueba identificada con testID: 7 se ejecutó para verificar un comportamiento específico de la aplicación, relacionado con un contador incrementándose. Durante la prueba, se esperaba encontrar un widget de texto con el valor "0", pero no se encontró ninguno. Esto provocó que la prueba fallara.
+El mensaje de error indica que la prueba falló porque no había ningún widget coincidente con el texto esperado.
