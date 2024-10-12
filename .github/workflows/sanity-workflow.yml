@@ -3,7 +3,7 @@ name: Python SDK Test workflow
 on:
   push:
     branches:
-      - main
+      - feature/pruebas_ListadoEventos
   workflow_dispatch:
     inputs:
       commit_sha:
