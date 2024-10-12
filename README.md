@@ -1,102 +1,110 @@
-# PyTest with Browserstack AppAutomate
+# Pruebas a la interfaz de Login
 
-PyTest Integration with BrowserStack using SDK.
+### Reporte
 
-![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780)
-### Requirements
+Despliegue con github pages
+https://upt-faing-epis.github.io/proyecto-si8811a-2024-ii-u1-pruebas-2-rivera-lupaca/#
 
-* Python3
+## Preparando entorno de pruebas
 
-## Setup
+Enlace a la configuracion:
+https://github.com/UPT-FAING-EPIS/proyecto-si8811a-2024-ii-u1-pruebas-2-rivera-lupaca/issues/6
 
-* Clone the repo with `git clone -b sdk https://github.com/browserstack/pytest-appium-app-browserstack.git`
-* It is recommended to use a virtual environment to install dependencies. To create a virtual environment:
-  ```
-  python3 -m venv env
-  source env/bin/activate # on Mac
-  env\Scripts\activate # on Windows
-  ```
-* Install dependencies `pip install -r requirements.txt`
-* To run your automated tests using BrowserStack, you must provide a valid username and access key. This can be done either by providing your username and access key in the `browserstack.yml` configuration file, or by setting the `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` environment variables.
+### Requerimientos
 
-## Getting Started
+- Python
+- Appium
+- Appium Inspector
+- Librerias: Selenium, pytest, allure-pytest, appium-python-client.
+- Allure
+- Vscode
 
-Getting Started with Pytest-Appium tests in Python on BrowserStack couldn't be easier!
+### Comandos
 
-### Run your first test :
-
-**1. Upload your Android or iOS App**
-
-Specify your Android app (.apk or .aab file) or iOS app (.ipa file) in the `browserstack.yml` configuration file. Here is an example app config :
+Instalando las librerias:
+Selenium:
 
 ```
-app: '/path/to/local/app.apk'
+pip install selenium
 ```
 
-Set `app` to use the appliction under test for Appium sessions. Available options: app: `/path/to/local/app.apk` OR app: `bs://<app-id>` i.e App URL returned when uploading the app to BrowserStack manually. Visit https://www.browserstack.com/docs/app-automate/appium/set-up-tests/specify-app for more options
-
-**Note**: If you do not have an .apk or .ipa file and are looking to simply try App Automate, you can download and test using our [sample Android app](https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk) or [sample iOS app](https://www.browserstack.com/app-automate/sample-apps/ios/BStackSampleApp.ipa).
-
-
-**2. Configure and run your first single test**
-
-Open `browserstack.yml` file in `android` folder for Android and `ios` folder for iOS:
-
-- Replace `YOUR_USERNAME` & `YOUR_ACCESS_KEY` in the `browserstack.yml` configuration file. Get your BrowserStack access credentials from [here](https://www.browserstack.com/accounts/settings)
-
-- Replace `app: bs://<app-id>` with the URL obtained from app upload step or mention the path to your apk file.
-
-- Run the below command to execute a Android test on BrowserStack AppAutomate:
-    ```
-    cd android
-    browserstack-sdk pytest -s bstack_sample.py
-    ```
-
-- Run the below command to execute a iOS test on BrowserStack AppAutomate:
-    ```
-    cd ios
-    browserstack-sdk pytest -s bstack_sample.py
-    ```
-
-- You can access the test execution results, and debugging information such as video recording, network logs on [App Automate dashboard](https://app-automate.browserstack.com/dashboard)
-
----
-
-### **Use Local testing for apps that access resources hosted in development or testing environments :**
-
-**1. Upload your Android or iOS App**
-
-Specify your Android app (.apk or .aab file) or iOS app (.ipa file) in the `browserstack.yml` configuration file. Here is an example app config :
+Para instalar Appium-python
 
 ```
-app: '/path/to/local/app.apk'
+pip install appium-Python-Client==2.0.0
 ```
 
-Set `app` to use the appliction under test for Appium sessions. Available options: app: `/path/to/local/app.apk` OR app: `bs://<app-id>` i.e App URL returned when uploading the app to BrowserStack manually. Visit https://www.browserstack.com/docs/app-automate/appium/set-up-tests/specify-app for more options
+Instalando allure-pytest
 
-**Note**: If you do not have an .apk or .ipa file and are looking to simply try App Automate, you can download and test using our [sample Android app](https://www.browserstack.com/app-automate/sample-apps/android/WikipediaSample.apk) or [sample iOS app](https://www.browserstack.com/app-automate/sample-apps/ios/BStackSampleApp.ipa).
+```
+pip install allure-pytest
+```
 
+Instalando pytest
 
-**2. Configure and run your local test**
+```
+pip install pytest
+```
 
-Open `browserstack.yml` file in `android` folder for Android and `ios` folder for iOS:
+## BrowserStack para pruebas automatizadas
 
-- Replace `YOUR_USERNAME` & `YOUR_ACCESS_KEY` in the `browserstack.yml` configuration file. Get your BrowserStack access credentials from [here](https://www.browserstack.com/accounts/settings)
+### Clonamos la plantilla
 
-- Replace `app: bs://<app-id>` with the URL obtained from app upload step or mention the path to your apk file.
+```
+git clone https://github.com/browserstack/pytest-appium-app-browserstack
+cd pytest-appium-app-browserstack
+```
 
-- Ensure that `browserstackLocal` capability is set to `true`. The `browserstack-sdk` contains the code snippet that automatically establishes Local Testing connection to BrowserStack servers using Python binding for BrowserStack Local. 
+### Creando entorno de trabajo venv
 
-- Run the below command for Android: 
-    ```
-    cd android
-    browserstack-sdk pytest -s bstack_sample_local.py
-    ```
+Dentro del repositorio de pruebas
 
-- Run the below command for iOS: 
-    ```
-    cd ios
-    browserstack-sdk pytest -s bstack_sample_local.py
-    ```
+```
+python -m venv env
+env\Scripts\activate
+pip install -r requirements.txt
 
-- You can access the test execution results, and debugging information such as video recording, network logs on [App Automate dashboard](https://app-automate.browserstack.com/dashboard)
+```
+
+### Configuramos el browserstack.yml
+
+```
+userName: <TuUsuario>
+accessKey: <TuAccessKey>
+framework: pytest
+app: bs://sample.app
+platforms:
+  - platformName: android
+    deviceName: Samsung Galaxy S22 Ultra
+    platformVersion: 12.0
+  - platformName: android
+    deviceName: Google Pixel 7 Pro
+    platformVersion: 13.0
+  - platformName: android
+    deviceName: OnePlus 9
+    platformVersion: 11.0
+parallelsPerPlatform: 1
+browserstackLocal: true
+buildName: browserstack-build-1
+projectName: BrowserStack Sample
+```
+
+### Ejecutamos la prueba
+
+```
+cd android
+browserstack-sdk pytest -s bstack_sample.py
+```
+
+## Resultados
+
+![alt text](/img/browser1.png)
+![alt text](/img/browser2.png)
+![alt text](/img/browser3.png)
+
+## Imagenes
+
+![alt text](/img/image.png)
+![alt text](/img/image-2.png)
+![alt text](/img/image-3.png)
+![alt text](/img/image-1.png)
