@@ -21,19 +21,30 @@ npx wdio config
 
 ---
 
-````
+
 ### Diagrama de 
+
 ```mermaid
 graph TD
     A[VS Code - Ejecución de pruebas] -->|Envía pruebas| B[BrowserStack - Appium]
     B -->|Ejecución en dispositivo Android| C[Dispositivo Android]
     C -->|Resultados de pruebas| D[BrowserStack - Gestión de resultados]
-    D -->|Generación de reportes| E[BrowserStack Reporter]
+    D -->|Gestión de reportes| E[Allure Reporter]
     D -->|Videos de pruebas| F[BrowserStack - Videos]
     E --> G[Visualización de reportes]
     F --> H[Videos disponibles en BrowserStack]
 
-````
+    style A fill:#333,stroke:#FFF,stroke-width:2px,color:#FFF;
+    style B fill:#333,stroke:#FFF,stroke-width:2px,color:#FFF;
+    style C fill:#444,stroke:#FFF,stroke-width:2px,color:#FFF;
+    style D fill:#444,stroke:#FFF,stroke-width:2px,color:#FFF;
+    style E fill:#555,stroke:#FFF,stroke-width:2px,color:#FFF;
+    style F fill:#555,stroke:#FFF,stroke-width:2px,color:#FFF;
+    style G fill:#666,stroke:#FFF,stroke-width:2px,color:#FFF;
+    style H fill:#666,stroke:#FFF,stroke-width:2px,color:#FFF;
+
+
+```
 
 ### Diagrama del pipeline
 
