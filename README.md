@@ -29,7 +29,7 @@ graph TD
     A[VS Code - Ejecución de pruebas] -->|Envía pruebas| B[BrowserStack - Appium]
     B -->|Ejecución en dispositivo Android| C[Dispositivo Android]
     C -->|Resultados de pruebas| D[BrowserStack - Gestión de resultados]
-    D -->|Gestión de reportes| E[Allure Reporter]
+    D -->|Gestión de reportes| E[BrowserStack Reporter]
     D -->|Videos de pruebas| F[BrowserStack - Videos]
     E --> G[Visualización de reportes]
     F --> H[Videos disponibles en BrowserStack]
