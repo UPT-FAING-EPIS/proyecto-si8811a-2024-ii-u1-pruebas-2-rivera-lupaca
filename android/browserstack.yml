@@ -1,0 +1,18 @@
+userName: jhonnyrivera_Nid5O8
+accessKey: Qqu35qpw5Xef4sB2kyCq
+framework: pytest
+app: bs://484f79f7cc8697b9bab640a22cf819e63886aee2
+platforms:
+  - platformName: android
+    deviceName: Samsung Galaxy S22 Ultra
+    platformVersion: 12.0
+  - platformName: android
+    deviceName: Google Pixel 7 Pro
+    platformVersion: 13.0
+  - platformName: android
+    deviceName: OnePlus 9
+    platformVersion: 11.0
+parallelsPerPlatform: 1
+browserstackLocal: true
+buildName: browserstack-build-1
+projectName: BrowserStack Sample
