@@ -3,7 +3,7 @@ name: Python SDK Test workflow
 on:
   push:
     branches:
-      - feature/pruebas_ListadoEventos
+      - main
   workflow_dispatch:
     inputs:
       commit_sha:
@@ -44,23 +44,11 @@ jobs:
           cd android
           mkdir -p allure-results
 
-      # Ejecutar la primera prueba: bstack_sample.py
-      - name: Run bstack_sample.py test
+      # Ejecutar todas las pruebas en Android
+      - name: Run all tests in parallel on Android
         run: |
           cd android
-          browserstack-sdk pytest -s bstack_sample.py --alluredir=allure-results
-
-      # Ejecutar la segunda prueba: test_coordinadores.py
-      - name: Run test_coordinadores.py test
-        run: |
-          cd android
-          browserstack-sdk pytest -s test_coordinadores.py --alluredir=allure-results
-
-      # Ejecutar la tercera prueba: test_eventos.py
-      - name: Run test_eventos.py test
-        run: |
-          cd android
-          browserstack-sdk pytest -s test_eventos.py --alluredir=allure-results
+          browserstack-sdk pytest -s bstack_sample.py test_coordinadores.py test_eventos.py tes_equipo.py tes_participantes.py tes_ubicacion.py --alluredir=allure-results
 
       # Generar el reporte Allure en HTML
       - name: Generate Allure Report
