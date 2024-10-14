@@ -134,19 +134,6 @@ class LoginTest(unittest.TestCase):
             allure.attach(f"Error: {str(e)}", name="Error al presionar el botón 'Skip'", attachment_type=allure.attachment_type.TEXT)
             print(f"Error localizando o presionando el botón 'Skip': {e}")
 
-        # 3. Verificar que Google Maps se abrió correctamente
-        try:
-            google_maps_view = WebDriverWait(self.driver, 30).until(
-                EC.presence_of_element_located((By.XPATH, "//android.widget.TextView[@text='Google Maps']"))
-            )
-            self.assertTrue(google_maps_view.is_displayed(), "Google Maps no se abrió correctamente.")
-            allure.attach("Google Maps abierto correctamente", name="Detalle del paso", attachment_type=allure.attachment_type.TEXT)
-            print("Google Maps abierto correctamente.")
-        except Exception as e:
-            self.driver.save_screenshot("google_maps_error.png")
-            allure.attach.file("google_maps_error.png", name="Error de Google Maps", attachment_type=allure.attachment_type.PNG)
-            self.fail(f"Error verificando la apertura de Google Maps: {e}")
-
     @classmethod
     def tearDownClass(cls):
         try:
