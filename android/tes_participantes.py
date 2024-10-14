@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import allure
+import base64
 import time
 
 @allure.feature("Inicio de sesión y Búsqueda de Participantes")
@@ -18,7 +19,7 @@ class LoginTest(unittest.TestCase):
             config = yaml.safe_load(stream)
 
         # Ajustar adbExecTimeout para evitar largos tiempos de espera
-        config['adbExecTimeout'] = 50000  # 50 segundos de tiempo máximo para ADB
+        config['adbExecTimeout'] = 30000  # 30 segundos de tiempo máximo para ADB
 
         # Inicializa el driver con las Desired Capabilities
         cls.driver = webdriver.Remote("http://hub-cloud.browserstack.com/wd/hub", config)
