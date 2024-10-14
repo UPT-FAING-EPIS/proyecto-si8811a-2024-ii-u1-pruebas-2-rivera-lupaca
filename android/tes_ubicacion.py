@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import allure
+import base64
 import time
 
 @allure.feature("Inicio de sesión y Navegación en Ubicaciones")
@@ -16,6 +17,9 @@ class LoginTest(unittest.TestCase):
         # Cargar las capacidades desde el archivo browserstack.yml
         with open("browserstack.yml", 'r') as stream:
             config = yaml.safe_load(stream)
+
+        # Ajustar adbExecTimeout para evitar largos tiempos de espera
+        config['adbExecTimeout'] = 50000  # 50 segundos de tiempo máximo para ADB
 
         # Inicializa el driver con las Desired Capabilities
         cls.driver = webdriver.Remote("http://hub-cloud.browserstack.com/wd/hub", config)
@@ -118,6 +122,18 @@ class LoginTest(unittest.TestCase):
             allure.attach(f"Error: {str(e)}", name="Error al seleccionar la ubicación 'Gimnasio UPT'", attachment_type=allure.attachment_type.TEXT)
             self.fail(f"Error seleccionando la ubicación 'Gimnasio UPT': {e}")
 
+        # Presionar el botón "Skip" en Google Maps (si aparece)
+        try:
+            skip_button = WebDriverWait(self.driver, 20).until(
+                EC.presence_of_element_located((By.XPATH, "//android.widget.Button[@text='SKIP']"))
+            )
+            skip_button.click()
+            allure.attach("Botón 'Skip' presionado con éxito", name="Botón 'Skip'", attachment_type=allure.attachment_type.TEXT)
+            print("Botón 'Skip' presionado con éxito.")
+        except Exception as e:
+            allure.attach(f"Error: {str(e)}", name="Error al presionar el botón 'Skip'", attachment_type=allure.attachment_type.TEXT)
+            print(f"Error localizando o presionando el botón 'Skip': {e}")
+
         # 3. Verificar que Google Maps se abrió correctamente
         try:
             google_maps_view = WebDriverWait(self.driver, 30).until(
@@ -133,13 +149,17 @@ class LoginTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # Detener la grabación de pantalla después de la pausa
-        video = cls.driver.stop_recording_screen()
+        try:
+            # Detener la grabación de pantalla
+            video = cls.driver.stop_recording_screen()
 
-        # Guardar el video como archivo .mp4
-        with open("test_google_maps.mp4", "wb") as video_file:
-            video_file.write(base64.b64decode(video))
-
+            # Guardar el video como archivo .mp4
+            with open("test_google_maps.mp4", "wb") as video_file:
+                video_file.write(base64.b64decode(video))
+        except Exception as e:
+            print(f"Error al detener la grabación: {e}")
+            allure.attach(f"Error al detener la grabación: {e}", name="Error de grabación", attachment_type=allure.attachment_type.TEXT)
+        
         # Finaliza la sesión
         cls.driver.quit()
 
