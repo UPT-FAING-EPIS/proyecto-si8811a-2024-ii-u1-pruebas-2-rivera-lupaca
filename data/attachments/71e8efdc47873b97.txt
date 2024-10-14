@@ -1,0 +1,1 @@
+Error al detener la grabación: name 'base64' is not defined

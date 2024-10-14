@@ -1,3 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Mon Oct 14 00:42:26 UTC 2024","Mon Oct 14 00:42:46 UTC 2024","20792","","test_eventos","LoginAndEventTest","","","test_navigate_to_events",""
-"passed","Mon Oct 14 00:42:12 UTC 2024","Mon Oct 14 00:42:25 UTC 2024","12598","","test_eventos","LoginAndEventTest","","","test_login_with_microsoft",""
+"passed","Mon Oct 14 01:02:38 UTC 2024","Mon Oct 14 01:02:52 UTC 2024","14650","","tes_participantes","LoginTest","","","test_login_with_microsoft",""
+"passed","Mon Oct 14 01:02:53 UTC 2024","Mon Oct 14 01:03:02 UTC 2024","9393","","tes_participantes","LoginTest","","","test_search_participant",""
