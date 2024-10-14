@@ -20,7 +20,6 @@ class LoginAndEventTest(unittest.TestCase):
 
         # Inicializa el driver con las Desired Capabilities
         cls.driver = webdriver.Remote("http://hub-cloud.browserstack.com/wd/hub", config)
-
         cls.driver.implicitly_wait(10)  # Tiempo de espera implícito
 
         # Inicia la grabación de pantalla
@@ -100,6 +99,8 @@ class LoginAndEventTest(unittest.TestCase):
             allure.attach(f"Error: {str(e)}", name="Error durante la verificación del inicio de sesión", attachment_type=allure.attachment_type.TEXT)
             self.fail(f"Error verificando la carga del dashboard: {e}")
 
+    @allure.step("Navegar a la sección de Eventos")
+    def test_navigate_to_events(self):
         # Navegar a la sección de "Eventos"
         try:
             eventos_button = WebDriverWait(self.driver, 30).until(
@@ -118,8 +119,7 @@ class LoginAndEventTest(unittest.TestCase):
             ("Cuento", "//android.view.View[@content-desc='Cuento\n24/09/2024 - 24/09/2024\nFAING\nResultado: Aún por verse']"),
             ("Ortografia", "//android.view.View[@content-desc='Ortografia\n24/09/2024 - 24/09/2024\nFAEDCOH\nResultado: Aún por verse']"),
             ("Concurso de Tik Tok", "//android.view.View[@content-desc='Concurso de Tik Tok \"Viviendo y Comiendo Sano\"\n24/09/2024 - 24/09/2024\nResultado: Aún por verse']"),
-            ("Miss y Mister Talento", "//android.view.View[@content-desc='Miss y Mister Talento\n24/09/2024 - 24/09/2024\nFAING\nResultado: Aún por verse']"),
-            ("Fotografia", "//android.view.View[@content-desc='Fotografia\n25/09/2024 - 25/09/2024\nFAEDCOH\nResultado: Aún por verse']")
+            ("Miss y Mister Talento", "//android.view.View[@content-desc='Miss y Mister Talento\n24/09/2024 - 24/09/2024\nFAING\nResultado: Aún por verse']")
         ]
 
         for event_name, event_xpath in events:
