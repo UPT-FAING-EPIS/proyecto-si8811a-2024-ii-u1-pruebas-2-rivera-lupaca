@@ -1,0 +1,12 @@
+userName: jhonnyriveramend_G7Xoik
+accessKey: pzAYJsXvqgcRDmTTMDy3
+framework: pytest
+app: bs://a0879b9fd160f5031da1ca78e3c0300f86a1d5ad
+platforms:
+  - platformName: android
+    deviceName: Samsung Galaxy S22 Ultra
+    platformVersion: 12.0
+parallelsPerPlatform: 1
+browserstackLocal: true
+buildName: browserstack-build-1
+projectName: BrowserStack Sample
