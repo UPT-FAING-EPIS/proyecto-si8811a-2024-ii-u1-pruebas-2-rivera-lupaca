@@ -115,7 +115,7 @@ class LoginAndEventTest(unittest.TestCase):
 
         # Definir eventos y hacer clic en cada uno
         events = [
-            ("Cuento", "//android.view.View[@content-desc='Cuentos\n24/09/2024 - 24/09/2024\nFAING\nResultado: Aún por verse']"),
+            ("Cuento", "//android.view.View[@content-desc='Cuento\n24/09/2024 - 24/09/2024\nFAING\nResultado: Aún por verse']"),
             ("Ortografía", "//android.view.View[@content-desc='Ortografia\n24/09/2024 - 24/09/2024\nFAEDCOH\nResultado: Aún por verse']"),
             ("Concurso de Tik Tok", "//android.view.View[@content-desc='Concurso de Tik Tok \"Viviendo y Comiendo Sano\"\n24/09/2024 - 24/09/2024\nResultado: Aún por verse']"),
             ("Miss y Mister Talento", "//android.view.View[@content-desc='Miss y Mister Talento\n24/09/2024 - 24/09/2024\nFAING\nResultado: Aún por verse']"),
