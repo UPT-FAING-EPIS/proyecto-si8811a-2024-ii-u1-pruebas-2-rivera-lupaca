@@ -48,7 +48,7 @@ jobs:
       - name: Run all tests in parallel on Android
         run: |
           cd android
-          browserstack-sdk pytest -s tes_ubicacion.py --alluredir=allure-results
+          browserstack-sdk pytest -s test_login.py test_coordinadores.py test_eventos.py test_equipo.py test_participantes.py test_ubicacion.py --alluredir=allure-results
 
       # Generar el reporte Allure en HTML
       - name: Generate Allure Report
