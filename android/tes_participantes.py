@@ -17,6 +17,9 @@ class LoginTest(unittest.TestCase):
         with open("browserstack.yml", 'r') as stream:
             config = yaml.safe_load(stream)
 
+        # Ajustar adbExecTimeout para evitar largos tiempos de espera
+        config['adbExecTimeout'] = 50000  # 50 segundos de tiempo máximo para ADB
+
         # Inicializa el driver con las Desired Capabilities
         cls.driver = webdriver.Remote("http://hub-cloud.browserstack.com/wd/hub", config)
         cls.driver.implicitly_wait(10)  # Tiempo de espera implícito
@@ -119,6 +122,7 @@ class LoginTest(unittest.TestCase):
             if participante_erick.is_displayed():
                 allure.attach("Participante 'Erick Mamani' encontrado con éxito", name="Participante", attachment_type=allure.attachment_type.TEXT)
                 print("Participante 'Erick Mamani' encontrado con éxito.")
+                return  # Terminar inmediatamente después de encontrar a 'Erick'
             else:
                 self.fail("El participante 'Erick Mamani' no fue encontrado.")
         
@@ -128,13 +132,17 @@ class LoginTest(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # Detener la grabación de pantalla después de la pausa
-        video = cls.driver.stop_recording_screen()
+        try:
+            # Detener la grabación de pantalla
+            video = cls.driver.stop_recording_screen()
 
-        # Guardar el video como archivo .mp4
-        with open("test_search_participant.mp4", "wb") as video_file:
-            video_file.write(base64.b64decode(video))
-
+            # Guardar el video como archivo .mp4
+            with open("test_search_participant.mp4", "wb") as video_file:
+                video_file.write(base64.b64decode(video))
+        except Exception as e:
+            print(f"Error al detener la grabación: {e}")
+            allure.attach(f"Error al detener la grabación: {e}", name="Error de grabación", attachment_type=allure.attachment_type.TEXT)
+        
         # Finaliza la sesión
         cls.driver.quit()
 
