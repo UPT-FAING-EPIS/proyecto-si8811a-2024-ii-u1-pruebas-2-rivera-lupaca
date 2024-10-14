@@ -113,12 +113,14 @@ class LoginTest(unittest.TestCase):
             time.sleep(2)  # Dar tiempo para que se filtre la búsqueda
 
             # 3. Verificar que el participante "Erick Mamani" aparece en los resultados
-            participante_erick = WebDriverWait(self.driver, 30).until(
+            participante_erick = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.XPATH, "//android.view.View[contains(@content-desc, 'Erick Mamani')]"))
             )
-            self.assertTrue(participante_erick.is_displayed(), "El participante 'Erick Mamani' no fue encontrado.")
-            allure.attach("Participante 'Erick Mamani' encontrado con éxito", name="Participante", attachment_type=allure.attachment_type.TEXT)
-            print("Participante 'Erick Mamani' encontrado con éxito.")
+            if participante_erick.is_displayed():
+                allure.attach("Participante 'Erick Mamani' encontrado con éxito", name="Participante", attachment_type=allure.attachment_type.TEXT)
+                print("Participante 'Erick Mamani' encontrado con éxito.")
+            else:
+                self.fail("El participante 'Erick Mamani' no fue encontrado.")
         
         except Exception as e:
             allure.attach(f"Error: {str(e)}", name="Error en la búsqueda", attachment_type=allure.attachment_type.TEXT)
