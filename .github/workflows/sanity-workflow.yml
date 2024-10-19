@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - feature/pruebas_ListadoEventos
+      - main
+      - develop
   workflow_dispatch:
     inputs:
       commit_sha:
@@ -38,24 +40,24 @@ jobs:
           sudo mv allure-2.21.0 /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
 
-      # Cambiar a la carpeta android y crear allure-results
+
       - name: Create allure-results directory inside android
         run: |
           cd android
           mkdir -p allure-results
 
-      # Ejecutar todas las pruebas en Android
+      
       - name: Run all tests in parallel on Android
         run: |
           cd android
           browserstack-sdk pytest -s test_login.py test_coordinadores.py test_eventos.py test_equipo.py test_participantes.py test_ubicacion.py --alluredir=allure-results
 
-      # Generar el reporte Allure en HTML
+      
       - name: Generate Allure Report
         run: |
           allure generate android/allure-results --clean -o allure-report
 
-      # Subir el contenido del reporte a GitHub Pages
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

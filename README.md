@@ -68,24 +68,27 @@ graph TD
 
 ```
 
-### Diagrama del pipeline
+### Diagrama del pipeline CI/CD
 
 ```mermaid
 graph TD
-    A[Python SDK Test workflow] --> B[Push or Workflow Dispatch]
-    B --> C[Job: comment-run]
-    C --> D[Runs on Ubuntu Latest]
-    D --> E[Step: Checkout Code]
-    E --> F[Step: Setup Python]
-    F --> G[Step: Install Dependencies]
-    G --> H[Step: Run Tests in Parallel on Android]
+    B[Commit al repositorio]
+    B --> C[Build del Proyecto]
+    C --> D[Test en BrowserStack]
+    D --> E[Pruebas con Appium]
+    E --> F[Genera Videos y Reportes]
+    F --> G[Resultados en Actions]
+    G --> H[Publica reportes en Allure]
 
     %% Estilos personalizados
     classDef background fill:#000,stroke:#FFF,stroke-width:2px,color:#FFF;
     classDef steps fill:#444,stroke:#FFF,stroke-width:2px,color:#FFF;
+    classDef important fill:#1E90FF,stroke:#FFF,stroke-width:2px,color:#FFF;
 
     %% Aplicación de estilos
     class A,B,C,D,E,F,G,H background;
+    class D,E,F,G,H important;
+
 
 ```
 
