@@ -116,7 +116,7 @@ https://github.com/UPT-FAING-EPIS/proyecto-si8811a-2024-ii-u1-pruebas-2-rivera-l
 ### Comandos
 
 Instalando las librerias:
-Selenium:
+Selenium: 
 
 ```
 pip install selenium
