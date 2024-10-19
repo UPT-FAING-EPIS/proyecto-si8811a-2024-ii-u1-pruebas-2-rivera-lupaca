@@ -109,18 +109,18 @@ class LoginTest(unittest.TestCase):
             allure.attach(f"Error: {str(e)}", name="Error al presionar el botón 'Ubicaciones'", attachment_type=allure.attachment_type.TEXT)
             self.fail(f"Error localizando o presionando el botón 'Ubicaciones': {e}")
 
-        # 2. Seleccionar la ubicación "Gimnasio UPT"
+        # 2. Seleccionar la ubicación "Aula Magna"
         try:
             gimnasio_upt_button = WebDriverWait(self.driver, 30).until(
-                EC.presence_of_element_located((By.XPATH, "//android.view.View[@content-desc=\"Gimnasio UPT\nDirección ID: 005\nCapacidad: 800\nDescripción: Gimnasio para eventos deportivos y entrenamientos.\nToca para ver en Google Maps\"]"))
+                EC.presence_of_element_located((By.XPATH, "//android.view.View[@content-desc=\"Aula Magna\nDirección ID: 009\nCapacidad: 400\nDescripción: Aula para clases magistrales y conferencias.\nToca para ver en Google Maps\"]"))
             )
             gimnasio_upt_button.click()
-            allure.attach("Ubicación 'Gimnasio UPT' seleccionada con éxito", name="Detalle del paso", attachment_type=allure.attachment_type.TEXT)
-            print("Ubicación 'Gimnasio UPT' seleccionada con éxito.")
+            allure.attach("Ubicación 'Aula Magna' seleccionada con éxito", name="Detalle del paso", attachment_type=allure.attachment_type.TEXT)
+            print("Ubicación 'Aula Magna' seleccionada con éxito.")
             time.sleep(5)  # Dar tiempo para que cargue Google Maps
         except Exception as e:
-            allure.attach(f"Error: {str(e)}", name="Error al seleccionar la ubicación 'Gimnasio UPT'", attachment_type=allure.attachment_type.TEXT)
-            self.fail(f"Error seleccionando la ubicación 'Gimnasio UPT': {e}")
+            allure.attach(f"Error: {str(e)}", name="Error al seleccionar la ubicación 'Aula Magna'", attachment_type=allure.attachment_type.TEXT)
+            self.fail(f"Error seleccionando la ubicación 'Aula Magna': {e}")
 
         # Presionar el botón "Skip" en Google Maps (si aparece)
         try:
